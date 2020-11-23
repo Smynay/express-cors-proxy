@@ -10,10 +10,12 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(express.json());
 app.use('/api', createProxyMiddleware({
   target: TARGET,
   changeOrigin: true,
+  pathRewrite: {
+    '^/api': '/',
+  },
 }));
 
 process
